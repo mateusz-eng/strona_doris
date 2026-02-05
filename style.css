@@ -267,17 +267,18 @@ p {
 .hero-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
+  height: 70vh;
+  min-height: 450px;
   margin-top: 73px;
-  background-color: #d5d2cd;
+  background-color: #e8e6e3;
 }
 
 .hero-split__text {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem 5rem;
-  background-color: #d5d2cd;
+  padding: 3rem 5rem;
+  background-color: #e8e6e3;
 }
 
 .hero-split__text .subtitle {
@@ -305,7 +306,7 @@ p {
 
 .hero-split__image {
   overflow: hidden;
-  background-color: #d5d2cd;
+  background-color: #e8e6e3;
 }
 
 .hero-split__image img {
