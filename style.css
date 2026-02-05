@@ -327,6 +327,76 @@ p {
   margin-right: auto;
 }
 
+/* ===== HERO SPLIT LAYOUT ===== */
+.hero--split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: var(--white);
+  height: 100vh;
+  min-height: 600px;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 4rem 4rem;
+  text-align: left;
+}
+
+.hero-text .subtitle {
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  color: var(--gray-light);
+}
+
+.hero-text h1 {
+  color: var(--black);
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.hero-text p {
+  color: var(--gray);
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+  max-width: 480px;
+  line-height: 1.8;
+}
+
+.hero-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+@media (max-width: 768px) {
+  .hero--split {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: auto;
+  }
+
+  .hero-text {
+    padding: 8rem 2rem 3rem;
+    order: 1;
+  }
+
+  .hero-image {
+    order: 2;
+    height: 50vh;
+  }
+}
+
 .hero-scroll {
   position: absolute;
   bottom: 2rem;
