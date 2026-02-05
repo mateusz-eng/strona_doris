@@ -12,7 +12,7 @@
 <body>
 
   <!-- NAVIGATION -->
-  <nav class="navbar scrolled" id="navbar">
+  <nav class="navbar" id="navbar">
     <div class="container">
       <a href="index.html" class="logo">Doris Beauty</a>
       <ul class="nav-links" id="navLinks">
@@ -39,15 +39,17 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero-split">
-    <div class="hero-split__text">
+  <section class="hero">
+    <div class="hero-bg" style="background-image: url('Hero.JPG');"></div>
+    <div class="hero-content">
       <p class="subtitle">Witaj w świecie piękna</p>
       <h1>Doris Beauty</h1>
       <p>Profesjonalne szkolenia z zakresu stylizacji rzęs i brwi. Dołącz do grona profesjonalistek i rozwiń swoją karierę w branży beauty.</p>
-      <a href="kontakt.html" class="btn btn-primary">Umów się</a>
+      <a href="kontakt.html" class="btn btn-white">Umów się</a>
     </div>
-    <div class="hero-split__image">
-      <img src="Hero.JPG" alt="Doris Beauty">
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="line"></div>
     </div>
   </section>
 
@@ -205,6 +207,16 @@
   </footer>
 
   <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
     // Mobile menu
     function toggleMenu() {
       document.getElementById('navLinks').classList.toggle('active');
