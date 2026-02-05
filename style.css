@@ -481,6 +481,21 @@ p {
   gap: 2rem;
 }
 
+.grid-2-center {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 66.666%;
+  margin: 2rem auto 0;
+}
+
+@media (max-width: 768px) {
+  .grid-2-center {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+}
+
 /* ===== CARDS ===== */
 .card {
   background: var(--white);
@@ -843,6 +858,14 @@ p {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
+
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -859,8 +882,10 @@ p {
     background-color: var(--white);
     flex-direction: column;
     justify-content: center;
-    gap: 2rem;
+    align-items: center;
+    gap: 1.5rem;
     transition: right 0.4s ease;
+    z-index: 1000;
   }
 
   .nav-links.active {
@@ -869,7 +894,7 @@ p {
 
   .nav-links a {
     color: var(--black) !important;
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .nav-item .dropdown {
@@ -883,7 +908,7 @@ p {
   }
 
   .dropdown a {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     padding: 0.4rem 0;
   }
 
@@ -912,6 +937,10 @@ p {
     padding: 4rem 0;
   }
 
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -923,12 +952,71 @@ p {
   }
 
   .hero {
-    min-height: 500px;
+    min-height: 100vh;
+    height: 100vh;
+  }
+
+  .hero-bg {
+    background-position: center 30% !important;
+  }
+
+  .hero-content {
+    padding: 0 1.5rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content .subtitle {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-scroll {
+    display: none;
   }
 
   .page-hero {
-    min-height: 300px;
-    height: 40vh;
+    min-height: 250px;
+    height: 35vh;
+  }
+
+  .page-hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .about-img img {
+    height: 350px;
+  }
+
+  .card {
+    padding: 2rem;
+  }
+
+  .stat-item h3 {
+    font-size: 2.2rem;
+  }
+
+  .testimonial {
+    padding: 1.5rem;
+  }
+
+  .testimonial blockquote {
+    font-size: 1.1rem;
+  }
+
+  .cta-banner {
+    padding: 3rem 1rem;
+  }
+
+  .cta-banner h2 {
+    font-size: 1.8rem;
   }
 }
 
@@ -939,10 +1027,37 @@ p {
 
   .stats {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .btn {
     padding: 0.8rem 2rem;
     font-size: 0.8rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .nav-links a {
+    font-size: 1rem !important;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .service-number {
+    font-size: 2rem;
+  }
+
+  .contact-grid {
+    gap: 2rem;
   }
 }
