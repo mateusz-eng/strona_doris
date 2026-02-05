@@ -481,19 +481,18 @@ p {
   gap: 2rem;
 }
 
-.grid-2-center {
+.cards-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 2rem;
-  max-width: 66.666%;
-  margin: 2rem auto 0;
 }
 
-@media (max-width: 768px) {
-  .grid-2-center {
-    grid-template-columns: 1fr;
-    max-width: 100%;
-  }
+.cards-grid .card {
+  grid-column: span 2;
+}
+
+.cards-grid .card:nth-child(4) {
+  grid-column: 2 / span 2;
 }
 
 /* ===== CARDS ===== */
@@ -863,8 +862,20 @@ p {
     font-size: 1rem;
   }
 
-  .grid-2-center {
-    max-width: 100%;
+  .cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .cards-grid .card {
+    grid-column: span 2;
+  }
+
+  .cards-grid .card:nth-child(5) {
+    grid-column: 2 / span 2;
+  }
+
+  .cards-grid .card:nth-child(4) {
+    grid-column: span 2;
   }
 }
 
@@ -916,6 +927,16 @@ p {
   .grid-3,
   .grid-4 {
     grid-template-columns: 1fr;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cards-grid .card,
+  .cards-grid .card:nth-child(4),
+  .cards-grid .card:nth-child(5) {
+    grid-column: span 1;
   }
 
   .stats {
