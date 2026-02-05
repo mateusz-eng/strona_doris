@@ -843,10 +843,6 @@ p {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
-  .grid-3 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -865,6 +861,10 @@ p {
 
   .hero-content p {
     font-size: 1rem;
+  }
+
+  .grid-2-center {
+    max-width: 100%;
   }
 }
 
