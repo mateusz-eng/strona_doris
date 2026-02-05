@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O mnie - Doris Beauty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Doris Beauty</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Strona Główna</a></li>
+        <li><a href="o-mnie.html">O mnie</a></li>
+        <li class="nav-item">
+          <a href="#">Szkolenia</a>
+          <div class="dropdown">
+            <a href="stylizacja-rzes.html">Stylizacja rzęs</a>
+            <a href="lash-start.html">Lash Start (od podstaw)</a>
+            <a href="lash-pro.html">Lash PRO (dla stylistek)</a>
+            <a href="stylizacja-brwi.html">Stylizacja brwi</a>
+            <a href="marketing.html">Marketing</a>
+          </div>
+        </li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1607748862156-7c548e7e98f4?w=1920&q=80');"></div>
+    <div class="page-hero-content">
+      <h1>O mnie</h1>
+      <p class="breadcrumb"><a href="index.html">Strona Główna</a> / O mnie</p>
+    </div>
+  </section>
+
+  <!-- ABOUT CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="grid-2 fade-in">
+        <div class="about-img">
+          <img src="https://images.unsplash.com/photo-1607748862156-7c548e7e98f4?w=800&q=80" alt="Doris Beauty - O mnie">
+        </div>
+        <div class="about-text">
+          <span class="overline">Kim jestem</span>
+          <h2>Moja historia</h2>
+          <div class="divider" style="margin: 1.5rem 0;"></div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOŚWIADCZENIE -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="overline">Doświadczenie</span>
+        <h2>Moja droga</h2>
+        <div class="divider"></div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="grid-2 fade-in" style="gap: 4rem;">
+        <div>
+          <h3 style="margin-bottom: 1.5rem;">Certyfikaty i wykształcenie</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+          <p style="margin-top: 1rem;">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+        </div>
+        <div>
+          <h3 style="margin-bottom: 1.5rem;">Filozofia pracy</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.</p>
+          <p style="margin-top: 1rem;">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATYSTYKI -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="stats fade-in">
+        <div class="stat-item">
+          <h3>500+</h3>
+          <p>Zadowolonych klientek</p>
+        </div>
+        <div class="stat-item">
+          <h3>10+</h3>
+          <p>Lat doświadczenia</p>
+        </div>
+        <div class="stat-item">
+          <h3>300+</h3>
+          <p>Przeszkolonych kursantek</p>
+        </div>
+        <div class="stat-item">
+          <h3>5</h3>
+          <p>Rodzajów szkoleń</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WARTOŚCI -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="overline">Wartości</span>
+        <h2>Co mnie wyróżnia</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="grid-3 fade-in">
+        <div class="card">
+          <span class="card-icon">✦</span>
+          <h3>Indywidualne podejście</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">◆</span>
+          <h3>Najwyższa jakość</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">★</span>
+          <h3>Ciągły rozwój</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-banner fade-in">
+        <h2>Chcesz wiedzieć więcej?</h2>
+        <p>Lorem ipsum dolor sit amet. Skontaktuj się ze mną i porozmawiajmy o szkoleniach.</p>
+        <a href="kontakt.html" class="btn btn-white">Skontaktuj się</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">Doris Beauty</a>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Profesjonalne szkolenia beauty.</p>
+        </div>
+        <div>
+          <h4>Nawigacja</h4>
+          <div class="footer-links">
+            <a href="index.html">Strona Główna</a>
+            <a href="o-mnie.html">O mnie</a>
+            <a href="kontakt.html">Kontakt</a>
+          </div>
+        </div>
+        <div>
+          <h4>Szkolenia</h4>
+          <div class="footer-links">
+            <a href="stylizacja-rzes.html">Stylizacja rzęs</a>
+            <a href="lash-start.html">Lash Start</a>
+            <a href="lash-pro.html">Lash PRO</a>
+            <a href="stylizacja-brwi.html">Stylizacja brwi</a>
+            <a href="marketing.html">Marketing</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Doris Beauty. Wszelkie prawa zastrzeżone.</p>
+        <div class="social-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.add('scrolled');
+      }
+    });
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
