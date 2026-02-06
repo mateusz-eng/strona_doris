@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { stripe } from '../../lib/stripe';
+import { getStripe } from '../../lib/stripe';
 
 export const prerender = false;
 
@@ -17,6 +17,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'http://localhost:4321';
 
+    const stripe = getStripe();
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card', 'p24', 'blik'],

@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { stripe } from '../../lib/stripe';
+import { getStripe } from '../../lib/stripe';
 
 export const prerender = false;
 
@@ -14,6 +14,7 @@ export const POST: APIRoute = async ({ request }) => {
   let event;
   try {
     const body = await request.text();
+    const stripe = getStripe();
     event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Unknown error';
