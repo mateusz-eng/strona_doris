@@ -1,0 +1,25 @@
+---
+interface StatItem {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  items: StatItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="py-28 max-md:py-16 bg-dark text-white">
+  <div class="max-w-[1200px] mx-auto px-8">
+    <div class="grid grid-cols-4 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-8 text-center fade-in">
+      {items.map((item) => (
+        <div>
+          <h3 class="text-[3rem] max-md:text-[2.2rem] font-light text-white mb-2">{item.value}</h3>
+          <p class="text-[0.8rem] tracking-[0.15em] uppercase text-white/70">{item.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

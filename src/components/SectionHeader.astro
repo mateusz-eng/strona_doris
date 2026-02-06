@@ -1,0 +1,23 @@
+---
+interface Props {
+  overline: string;
+  title: string;
+  description?: string;
+  dark?: boolean;
+}
+
+const { overline, title, description, dark = false } = Astro.props;
+---
+
+<div class="text-center max-w-[700px] mx-auto mb-16 fade-in">
+  <span class="block text-[0.75rem] tracking-[0.3em] uppercase text-gray-light mb-4 font-medium">
+    {overline}
+  </span>
+  <h2 class:list={['mb-6', dark && 'text-white']}>{title}</h2>
+  <div class:list={['w-[60px] h-px mx-auto my-6', dark ? 'bg-white' : 'bg-black']}></div>
+  {description && (
+    <p class:list={['text-[1.05rem]', dark && 'text-white/70']}>
+      {description}
+    </p>
+  )}
+</div>

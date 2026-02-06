@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  breadcrumb: string;
+  backgroundImage: string;
+}
+
+const { title, breadcrumb, backgroundImage } = Astro.props;
+---
+
+<section class="relative w-full h-[50vh] min-h-[400px] max-md:min-h-[250px] max-md:h-[35vh] flex items-center justify-center bg-dark overflow-hidden">
+  <div
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-50 scale-105"
+    style={`background-image: url('${backgroundImage}');`}
+  ></div>
+  <div class="relative z-[2] text-center text-white">
+    <h1 class="text-white mb-2 max-md:text-[2rem]">{title}</h1>
+    <p class="text-[0.8rem] tracking-[0.15em] uppercase text-white/60" set:html={breadcrumb} />
+  </div>
+</section>

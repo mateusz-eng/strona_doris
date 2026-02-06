@@ -1,0 +1,177 @@
+---
+interface Props {
+  isHome?: boolean;
+}
+
+const { isHome = false } = Astro.props;
+
+interface NavTraining {
+  title: string;
+  slug: string;
+}
+
+const trainings: NavTraining[] = [
+  { title: 'Stylizacja rzęs', slug: 'stylizacja-rzes' },
+  { title: 'Lash Start (od podstaw)', slug: 'lash-start' },
+  { title: 'Lash PRO (dla stylistek)', slug: 'lash-pro' },
+  { title: 'Stylizacja brwi', slug: 'stylizacja-brwi' },
+  { title: 'Marketing', slug: 'marketing' },
+];
+---
+
+<nav
+  class:list={[
+    'fixed top-0 left-0 w-full z-[1000] transition-all',
+    isHome ? 'py-6' : 'py-4 bg-white/[0.97] backdrop-blur-md shadow-sm',
+  ]}
+  id="navbar"
+  data-is-home={isHome ? 'true' : undefined}
+>
+  <div class="max-w-[1200px] mx-auto px-8 flex items-center justify-between">
+    <a
+      href="/"
+      class:list={[
+        'font-heading text-[1.6rem] font-normal tracking-[0.05em] transition-all',
+        isHome ? 'text-white' : 'text-black',
+      ]}
+      data-logo
+    >
+      Doris Beauty
+    </a>
+
+    <ul class="hidden md:flex items-center gap-10" id="navLinks" data-nav-links>
+      <li>
+        <a href="/" class:list={['nav-link', isHome ? 'text-white' : 'text-black']} data-nav-link>
+          Strona Główna
+        </a>
+      </li>
+      <li>
+        <a href="/o-mnie" class:list={['nav-link', isHome ? 'text-white' : 'text-black']} data-nav-link>
+          O mnie
+        </a>
+      </li>
+      <li class="relative group">
+        <a href="#" class:list={['nav-link', isHome ? 'text-white' : 'text-black']} data-nav-link>
+          Szkolenia
+        </a>
+        <div class="absolute top-[calc(100%+1rem)] left-[-1rem] bg-white min-w-[240px] py-4 shadow-lg opacity-0 invisible translate-y-[10px] transition-all group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+          {trainings.map((t) => (
+            <a
+              href={`/szkolenia/${t.slug}`}
+              class="block px-6 py-[0.6rem] text-[0.8rem] text-black tracking-[0.05em] hover:bg-gray-bg !no-underline"
+            >
+              {t.title}
+            </a>
+          ))}
+        </div>
+      </li>
+      <li>
+        <a href="/kontakt" class:list={['nav-link', isHome ? 'text-white' : 'text-black']} data-nav-link>
+          Kontakt
+        </a>
+      </li>
+    </ul>
+
+    <div class="flex md:hidden flex-col gap-[5px] cursor-pointer z-[1001]" id="hamburger" data-hamburger>
+      <span class:list={['w-[25px] h-[2px] transition-all', isHome ? 'bg-white' : 'bg-black']} data-hamburger-line></span>
+      <span class:list={['w-[25px] h-[2px] transition-all', isHome ? 'bg-white' : 'bg-black']} data-hamburger-line></span>
+      <span class:list={['w-[25px] h-[2px] transition-all', isHome ? 'bg-white' : 'bg-black']} data-hamburger-line></span>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="fixed top-0 right-[-100%] w-full h-screen bg-white flex flex-col justify-center items-center gap-6 transition-all duration-400 z-[1000] md:hidden" id="mobileMenu" data-mobile-menu>
+    <a href="/" class="text-black text-[1.1rem] uppercase tracking-[0.1em]">Strona Główna</a>
+    <a href="/o-mnie" class="text-black text-[1.1rem] uppercase tracking-[0.1em]">O mnie</a>
+    <div class="text-center">
+      <span class="text-black text-[1.1rem] uppercase tracking-[0.1em]">Szkolenia</span>
+      <div class="mt-2 ml-4">
+        {trainings.map((t) => (
+          <a href={`/szkolenia/${t.slug}`} class="block text-black text-[0.9rem] py-1">
+            {t.title}
+          </a>
+        ))}
+      </div>
+    </div>
+    <a href="/kontakt" class="text-black text-[1.1rem] uppercase tracking-[0.1em]">Kontakt</a>
+  </div>
+</nav>
+
+<style>
+  .nav-link {
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Scrolled state */
+  nav.scrolled {
+    background-color: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(10px);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  nav.scrolled [data-logo] {
+    color: var(--color-black);
+  }
+
+  nav.scrolled [data-nav-link] {
+    color: var(--color-black);
+  }
+
+  nav.scrolled [data-hamburger-line] {
+    background-color: var(--color-black);
+  }
+</style>
+
+<script>
+  function initNavbar() {
+    const navbar = document.getElementById('navbar');
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (!navbar) return;
+
+    const isHome = navbar.dataset.isHome === 'true';
+
+    if (isHome) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+    }
+
+    hamburger?.addEventListener('click', () => {
+      if (mobileMenu) {
+        const isOpen = mobileMenu.style.right === '0px';
+        mobileMenu.style.right = isOpen ? '-100%' : '0px';
+      }
+    });
+  }
+
+  initNavbar();
+  document.addEventListener('astro:after-swap', initNavbar);
+</script>

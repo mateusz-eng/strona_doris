@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Card from '../components/Card.astro';
+import Stats from '../components/Stats.astro';
+import Testimonial from '../components/Testimonial.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { getCollection } from 'astro:content';
+
+const szkolenia = (await getCollection('szkolenia')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Doris Beauty - Strona Główna" isHome>
+  <Hero
+    subtitle="Witaj w świecie piękna"
+    title="Doris Beauty"
+    description="Profesjonalne szkolenia z zakresu stylizacji rzęs i brwi. Dołącz do grona profesjonalistek i rozwiń swoją karierę w branży beauty."
+    buttonText="Umów się"
+    buttonLink="/kontakt"
+  />
+
+  <!-- O MNIE preview -->
+  <section class="py-28 max-md:py-16">
+    <div class="max-w-[1200px] mx-auto px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center fade-in">
+        <div class="relative overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1607748862156-7c548e7e98f4?w=800&q=80"
+            alt="O mnie"
+            class="w-full h-[500px] max-md:h-[350px] object-cover grayscale-[30%] transition-all hover:grayscale-0 hover:scale-[1.02]"
+          />
+        </div>
+        <div class="p-8">
+          <span class="block text-[0.75rem] tracking-[0.3em] uppercase text-gray-light mb-4 font-medium">O mnie</span>
+          <h2 class="mb-6">Pasja i profesjonalizm</h2>
+          <div class="w-[60px] h-px bg-black my-6"></div>
+          <p class="mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p class="mb-6">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+          <a href="/o-mnie" class="inline-block mt-4 px-10 py-4 bg-transparent text-black border border-black font-body text-[0.85rem] font-medium tracking-[0.15em] uppercase transition-all hover:bg-black hover:text-white hover:-translate-y-[2px]">
+            Poznaj mnie
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SZKOLENIA -->
+  <section class="py-28 max-md:py-16 bg-gray-bg">
+    <div class="max-w-[1200px] mx-auto px-8">
+      <SectionHeader
+        overline="Oferta"
+        title="Szkolenia stacjonarne"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Wybierz szkolenie dopasowane do Twojego poziomu doświadczenia."
+      />
+      <div class="flex flex-wrap justify-center gap-8 fade-in">
+        {szkolenia.map((s) => (
+          <div class="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)]">
+            <Card
+              icon={s.data.icon}
+              title={s.data.title}
+              description={s.data.description}
+              link={`/szkolenia/${s.id}`}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STATYSTYKI -->
+  <Stats items={[
+    { value: '500+', label: 'Zadowolonych klientek' },
+    { value: '10+', label: 'Lat doświadczenia' },
+    { value: '300+', label: 'Przeszkolonych kursantek' },
+    { value: '5', label: 'Rodzajów szkoleń' },
+  ]} />
+
+  <!-- OPINIE -->
+  <section class="py-28 max-md:py-16">
+    <div class="max-w-[1200px] mx-auto px-8">
+      <SectionHeader overline="Opinie" title="Co mówią klientki" />
+      <Testimonial
+        quote="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
+        author="Anna Kowalska"
+      />
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CtaBanner
+    title="Gotowa na zmianę?"
+    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Skontaktuj się ze mną i umów na szkolenie."
+    buttonText="Skontaktuj się"
+    buttonLink="/kontakt"
+  />
+</BaseLayout>

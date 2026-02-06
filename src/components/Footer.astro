@@ -1,0 +1,56 @@
+---
+interface NavTraining {
+  title: string;
+  slug: string;
+}
+
+const trainings: NavTraining[] = [
+  { title: 'Stylizacja rzęs', slug: 'stylizacja-rzes' },
+  { title: 'Lash Start', slug: 'lash-start' },
+  { title: 'Lash PRO', slug: 'lash-pro' },
+  { title: 'Stylizacja brwi', slug: 'stylizacja-brwi' },
+  { title: 'Marketing', slug: 'marketing' },
+];
+---
+
+<footer class="bg-dark text-white pt-16 pb-8">
+  <div class="max-w-[1200px] mx-auto px-8">
+    <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-12 mb-12">
+      <div>
+        <a href="/" class="inline-block mb-4 font-heading text-[1.4rem] text-white">Doris Beauty</a>
+        <p class="text-white/50 text-[0.9rem] max-w-[300px]">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Profesjonalne szkolenia beauty.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-body text-[0.75rem] tracking-[0.2em] uppercase mb-6 font-medium text-white/50">
+          Nawigacja
+        </h4>
+        <div class="flex flex-col">
+          <a href="/" class="py-[0.3rem] text-[0.9rem] text-white/70 hover:text-white">Strona Główna</a>
+          <a href="/o-mnie" class="py-[0.3rem] text-[0.9rem] text-white/70 hover:text-white">O mnie</a>
+          <a href="/kontakt" class="py-[0.3rem] text-[0.9rem] text-white/70 hover:text-white">Kontakt</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-body text-[0.75rem] tracking-[0.2em] uppercase mb-6 font-medium text-white/50">
+          Szkolenia
+        </h4>
+        <div class="flex flex-col">
+          {trainings.map((t) => (
+            <a href={`/szkolenia/${t.slug}`} class="py-[0.3rem] text-[0.9rem] text-white/70 hover:text-white">
+              {t.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-[0.8rem] text-white/40">&copy; 2026 Doris Beauty. Wszelkie prawa zastrzeżone.</p>
+      <div class="flex gap-6">
+        <a href="#" class="text-white/50 text-[0.85rem] tracking-[0.1em] uppercase hover:text-white">Instagram</a>
+        <a href="#" class="text-white/50 text-[0.85rem] tracking-[0.1em] uppercase hover:text-white">Facebook</a>
+      </div>
+    </div>
+  </div>
+</footer>

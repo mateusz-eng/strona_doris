@@ -1,0 +1,47 @@
+---
+import heroImage from '../assets/images/hero.jpg';
+
+interface Props {
+  subtitle?: string;
+  title: string;
+  description: string;
+  buttonText: string;
+  buttonLink: string;
+}
+
+const { subtitle, title, description, buttonText, buttonLink } = Astro.props;
+---
+
+<section class="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-dark">
+  <div
+    class="absolute inset-0 bg-cover bg-[center_35%] bg-no-repeat brightness-[0.6] scale-105 transition-transform duration-[8s] ease-in-out hover-target"
+    style={`background-image: url('${heroImage.src}');`}
+  ></div>
+  <div class="relative z-[2] text-center text-white max-w-[800px] px-8">
+    {subtitle && (
+      <p class="text-[0.85rem] tracking-[0.3em] uppercase mb-6 font-light text-white/80">
+        {subtitle}
+      </p>
+    )}
+    <h1 class="text-white mb-6 font-normal">{title}</h1>
+    <p class="text-white/80 text-[1.1rem] mb-10 max-w-[600px] mx-auto">
+      {description}
+    </p>
+    <a
+      href={buttonLink}
+      class="inline-block px-10 py-4 bg-white text-black font-body text-[0.85rem] font-medium tracking-[0.15em] uppercase transition-all hover:bg-cream hover:-translate-y-[2px] hover:shadow-md"
+    >
+      {buttonText}
+    </a>
+  </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-[2] flex flex-col items-center gap-2 text-white/60 text-[0.7rem] tracking-[0.2em] uppercase max-md:hidden">
+    <span>Scroll</span>
+    <div class="w-px h-10 bg-white/40 animate-[scrollLine_2s_ease-in-out_infinite]"></div>
+  </div>
+</section>
+
+<style>
+  section:hover .hover-target {
+    transform: scale(1);
+  }
+</style>

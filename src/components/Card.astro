@@ -1,0 +1,25 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  link?: string;
+  linkText?: string;
+}
+
+const { icon, title, description, link, linkText = 'Dowiedz się więcej →' } = Astro.props;
+---
+
+<div class="bg-white p-10 max-md:p-8 transition-all border border-transparent hover:-translate-y-[5px] hover:shadow-lg hover:border-gray-lighter">
+  <span class="text-[2rem] mb-6 block">{icon}</span>
+  <h3 class="mb-4">{title}</h3>
+  <p class="text-[0.95rem]">{description}</p>
+  {link && (
+    <a
+      href={link}
+      class="inline-block mt-6 text-[0.8rem] tracking-[0.15em] uppercase font-medium text-black border-b border-black pb-[2px] hover:text-gray hover:border-gray"
+    >
+      {linkText}
+    </a>
+  )}
+</div>

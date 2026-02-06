@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<BaseLayout title="Kontakt - Doris Beauty">
+  <PageHero
+    title="Kontakt"
+    breadcrumb='<a href="/" class="text-white/60 hover:text-white">Strona Główna</a> / Kontakt'
+    backgroundImage="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1920&q=80"
+  />
+
+  <!-- KONTAKT -->
+  <section class="py-28 max-md:py-16">
+    <div class="max-w-[1200px] mx-auto px-8">
+      <SectionHeader
+        overline="Napisz do mnie"
+        title="Skontaktuj się"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Chętnie odpowiem na wszystkie pytania dotyczące szkoleń."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 fade-in">
+        <div>
+          <h3 class="mb-8">Dane kontaktowe</h3>
+          <div class="mb-6">
+            <p class="text-[0.75rem] tracking-[0.15em] uppercase text-gray-light mb-1">Telefon</p>
+            <p class="text-black font-normal">+48 123 456 789</p>
+          </div>
+          <div class="mb-6">
+            <p class="text-[0.75rem] tracking-[0.15em] uppercase text-gray-light mb-1">E-mail</p>
+            <p class="text-black font-normal">kontakt@dorisbeauty.pl</p>
+          </div>
+          <div class="mb-6">
+            <p class="text-[0.75rem] tracking-[0.15em] uppercase text-gray-light mb-1">Adres</p>
+            <p class="text-black font-normal">ul. Przykładowa 12<br />00-000 Warszawa</p>
+          </div>
+          <div class="mb-6">
+            <p class="text-[0.75rem] tracking-[0.15em] uppercase text-gray-light mb-1">Godziny pracy</p>
+            <p class="text-black font-normal">Pon - Pt: 9:00 - 18:00<br />Sob: 10:00 - 15:00</p>
+          </div>
+          <div class="mt-8">
+            <p class="text-[0.75rem] tracking-[0.15em] uppercase text-gray-light mb-2">Social Media</p>
+            <div class="flex gap-6">
+              <a href="#" class="text-black text-[0.85rem] tracking-[0.1em] uppercase hover:text-gray">Instagram</a>
+              <a href="#" class="text-black text-[0.85rem] tracking-[0.1em] uppercase hover:text-gray">Facebook</a>
+            </div>
+          </div>
+        </div>
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPA placeholder -->
+  <section class="bg-gray-bg p-0">
+    <div class="w-full h-[400px] bg-gray-lighter flex items-center justify-center">
+      <p class="text-gray-light text-[1rem] tracking-[0.1em] uppercase">Mapa — tutaj zostanie wstawiona mapa Google</p>
+    </div>
+  </section>
+</BaseLayout>

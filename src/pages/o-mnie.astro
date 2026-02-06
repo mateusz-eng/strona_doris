@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Card from '../components/Card.astro';
+import Stats from '../components/Stats.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+---
+
+<BaseLayout title="O mnie - Doris Beauty">
+  <PageHero
+    title="O mnie"
+    breadcrumb='<a href="/" class="text-white/60 hover:text-white">Strona Główna</a> / O mnie'
+    backgroundImage="https://images.unsplash.com/photo-1607748862156-7c548e7e98f4?w=1920&q=80"
+  />
+
+  <!-- ABOUT CONTENT -->
+  <section class="py-28 max-md:py-16">
+    <div class="max-w-[1200px] mx-auto px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center fade-in">
+        <div class="relative overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1607748862156-7c548e7e98f4?w=800&q=80"
+            alt="Doris Beauty - O mnie"
+            class="w-full h-[500px] max-md:h-[350px] object-cover grayscale-[30%] transition-all hover:grayscale-0 hover:scale-[1.02]"
+          />
+        </div>
+        <div class="p-8">
+          <span class="block text-[0.75rem] tracking-[0.3em] uppercase text-gray-light mb-4 font-medium">Kim jestem</span>
+          <h2 class="mb-6">Moja historia</h2>
+          <div class="w-[60px] h-px bg-black my-6"></div>
+          <p class="mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p class="mb-6">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOŚWIADCZENIE -->
+  <section class="py-28 max-md:py-16 bg-gray-bg">
+    <div class="max-w-[1200px] mx-auto px-8">
+      <SectionHeader
+        overline="Doświadczenie"
+        title="Moja droga"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 fade-in">
+        <div>
+          <h3 class="mb-6">Certyfikaty i wykształcenie</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+          <p class="mt-4">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+        </div>
+        <div>
+          <h3 class="mb-6">Filozofia pracy</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.</p>
+          <p class="mt-4">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATYSTYKI -->
+  <Stats items={[
+    { value: '500+', label: 'Zadowolonych klientek' },
+    { value: '10+', label: 'Lat doświadczenia' },
+    { value: '300+', label: 'Przeszkolonych kursantek' },
+    { value: '5', label: 'Rodzajów szkoleń' },
+  ]} />
+
+  <!-- WARTOŚCI -->
+  <section class="py-28 max-md:py-16">
+    <div class="max-w-[1200px] mx-auto px-8">
+      <SectionHeader overline="Wartości" title="Co mnie wyróżnia" />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-in">
+        <Card icon="✦" title="Indywidualne podejście" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+        <Card icon="◆" title="Najwyższa jakość" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco." />
+        <Card icon="★" title="Ciągły rozwój" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse." />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CtaBanner
+    title="Chcesz wiedzieć więcej?"
+    description="Lorem ipsum dolor sit amet. Skontaktuj się ze mną i porozmawiajmy o szkoleniach."
+    buttonText="Skontaktuj się"
+    buttonLink="/kontakt"
+  />
+</BaseLayout>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  isFirst?: boolean;
+}
+
+const { number, title, description, isFirst = false } = Astro.props;
+---
+
+<div class:list={[
+  'flex items-center max-md:flex-col max-md:text-center py-12 border-b border-gray-lighter gap-12 max-md:gap-6',
+  isFirst && 'border-t border-gray-lighter',
+]}>
+  <span class="font-heading text-[3rem] max-sm:text-[2rem] text-gray-lighter min-w-[80px]">
+    {number}
+  </span>
+  <div class="flex-1">
+    <h3 class="mb-2">{title}</h3>
+    <p class="max-w-[500px]">{description}</p>
+  </div>
+</div>
