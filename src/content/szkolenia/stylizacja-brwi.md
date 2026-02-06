@@ -4,6 +4,7 @@ overline: "Szkolenie"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Naucz się profesjonalnej stylizacji brwi."
 icon: "◇"
 heroImage: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1920&q=80"
+contentImage: "/images/doris/doris-stylizacja-portret-casual.jpg"
 order: 4
 program:
   - title: "Analiza kształtu twarzy"

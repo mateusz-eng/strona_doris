@@ -4,7 +4,10 @@ overline: "Od podstaw"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Kurs od podstaw dla początkujących stylistek."
 icon: "◆"
 heroImage: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=1920&q=80"
+contentImage: "/images/doris/doris-szkolenie-skrypt-beauty.jpg"
 order: 2
+price: 1500
+stripePriceId: "price_1SxrCDLEcIV2lyoMmsWSyA6F"
 cards:
   - icon: "✦"
     title: "Początkujące stylistki"

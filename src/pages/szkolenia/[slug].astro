@@ -19,7 +19,7 @@ const { entry } = Astro.props;
 const { data } = entry;
 const { Content } = await render(entry);
 
-const imageForContent = data.heroImage.replace('w=1920', 'w=800');
+const imageForContent = data.contentImage || data.heroImage.replace('w=1920', 'w=800');
 ---
 
 <BaseLayout title={`${data.title} - Doris Beauty`}>
@@ -41,9 +41,22 @@ const imageForContent = data.heroImage.replace('w=1920', 'w=800');
             <div class="prose-content">
               <Content />
             </div>
-            <a href="/kontakt" class="inline-block mt-6 px-10 py-4 bg-black text-white font-body text-[0.85rem] font-medium tracking-[0.15em] uppercase transition-all hover:bg-gray-dark hover:-translate-y-[2px] hover:shadow-md">
-              Zapisz się
-            </a>
+            {data.stripePriceId ? (
+              <button
+                type="button"
+                class="inline-block mt-6 px-10 py-4 bg-black text-white font-body text-[0.85rem] font-medium tracking-[0.15em] uppercase transition-all hover:bg-gray-dark hover:-translate-y-[2px] hover:shadow-md cursor-pointer border-none"
+                data-checkout-button
+                data-price-id={data.stripePriceId}
+                data-training-title={data.title}
+                data-training-slug={entry.id}
+              >
+                Kup szkolenie — {data.price} zł
+              </button>
+            ) : (
+              <a href="/kontakt" class="inline-block mt-6 px-10 py-4 bg-black text-white font-body text-[0.85rem] font-medium tracking-[0.15em] uppercase transition-all hover:bg-gray-dark hover:-translate-y-[2px] hover:shadow-md">
+                Zapisz się
+              </a>
+            )}
           </div>
         </div>
         <div class:list={[data.infoGrid ? 'order-2' : 'order-1 md:order-2']}>
@@ -122,8 +135,11 @@ const imageForContent = data.heroImage.replace('w=1920', 'w=800');
   <CtaBanner
     title={data.ctaTitle}
     description={data.ctaDescription}
-    buttonText={data.ctaButtonText}
+    buttonText={data.stripePriceId ? `Kup szkolenie — ${data.price} zł` : data.ctaButtonText}
     buttonLink="/kontakt"
+    stripePriceId={data.stripePriceId}
+    trainingTitle={data.title}
+    trainingSlug={entry.id}
   />
 </BaseLayout>
 
@@ -136,3 +152,43 @@ const imageForContent = data.heroImage.replace('w=1920', 'w=800');
     margin-bottom: 1.5rem;
   }
 </style>
+
+<script>
+  function initCheckout() {
+    document.querySelectorAll('[data-checkout-button]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const btn = button as HTMLButtonElement;
+        const originalText = btn.textContent;
+        const priceId = btn.dataset.priceId;
+        const trainingTitle = btn.dataset.trainingTitle;
+        const trainingSlug = btn.dataset.trainingSlug;
+
+        btn.disabled = true;
+        btn.textContent = 'Przekierowuję...';
+
+        try {
+          const response = await fetch('/api/checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ priceId, trainingTitle, trainingSlug }),
+          });
+          const data = await response.json();
+
+          if (data.url) {
+            window.location.href = data.url;
+          } else {
+            throw new Error(data.error || 'Nie udało się utworzyć sesji płatności');
+          }
+        } catch (err) {
+          console.error('Checkout error:', err);
+          btn.disabled = false;
+          btn.textContent = originalText;
+          alert('Wystąpił błąd. Spróbuj ponownie lub skontaktuj się z nami.');
+        }
+      });
+    });
+  }
+
+  initCheckout();
+  document.addEventListener('astro:after-swap', initCheckout);
+</script>

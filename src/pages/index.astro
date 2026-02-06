@@ -4,7 +4,6 @@ import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import Card from '../components/Card.astro';
 import Stats from '../components/Stats.astro';
-import Testimonial from '../components/Testimonial.astro';
 import CtaBanner from '../components/CtaBanner.astro';
 import { getCollection } from 'astro:content';
 
@@ -26,8 +25,8 @@ const szkolenia = (await getCollection('szkolenia')).sort((a, b) => a.data.order
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center fade-in">
         <div class="relative overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1607748862156-7c548e7e98f4?w=800&q=80"
-            alt="O mnie"
+            src="/images/doris/doris-beauty-portret-frontalny.jpg"
+            alt="Doris Beauty - profesjonalna stylistka rzes i brwi"
             class="w-full h-[500px] max-md:h-[350px] object-cover grayscale-[30%] transition-all hover:grayscale-0 hover:scale-[1.02]"
           />
         </div>
@@ -80,12 +79,58 @@ const szkolenia = (await getCollection('szkolenia')).sort((a, b) => a.data.order
   <section class="py-28 max-md:py-16">
     <div class="max-w-[1200px] mx-auto px-8">
       <SectionHeader overline="Opinie" title="Co mówią klientki" />
-      <Testimonial
-        quote="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
-        author="Anna Kowalska"
-      />
+
+      <div class="relative fade-in">
+        <!-- Slider track -->
+        <div class="overflow-hidden">
+          <div id="opinie-track" class="flex transition-transform duration-500 ease-in-out">
+            {[
+              { src: '/images/opinie/karolina-bizub.jpeg', name: 'Karolina Bizub', handle: '@bisonte_bello' },
+              { src: '/images/opinie/full-ofbeautyy.jpeg', name: 'Kursantka', handle: '@full.ofbeautyy' },
+              { src: '/images/opinie/karolina-cipta-1.jpeg', name: 'Karolina Cipta', handle: '@solea_karolina_cipta' },
+              { src: '/images/opinie/celina-solus.jpeg', name: 'Celina', handle: '@lashesbycelinasolus' },
+              { src: '/images/opinie/karolina-krawczyk.jpeg', name: 'Karolina Krawczyk', handle: '@k.karolashka' },
+              { src: '/images/opinie/karolina-cipta-2.jpeg', name: 'Karolina Cipta', handle: '@solea_karolina_cipta' },
+            ].map((opinia, i) => (
+              <div class="opinie-slide shrink-0 w-1/3 max-md:w-full px-3" data-index={i}>
+                <button type="button" class="group w-full text-left cursor-pointer bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-500 border-none p-0" data-lightbox-trigger>
+                  <div class="overflow-hidden">
+                    <img
+                      src={opinia.src}
+                      alt={`Opinia - ${opinia.name}`}
+                      class="w-full h-[420px] max-md:h-[360px] object-cover object-top transition-transform group-hover:scale-[1.02]"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="p-4">
+                    <p class="text-[0.9rem] font-medium text-black">{opinia.name}</p>
+                    <p class="text-[0.75rem] text-gray-light">{opinia.handle}</p>
+                  </div>
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Strzałki -->
+        <button type="button" id="opinie-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white shadow-md border-none cursor-pointer flex items-center justify-center text-xl transition-all hover:shadow-lg hover:scale-110 z-10 max-md:hidden">&#8249;</button>
+        <button type="button" id="opinie-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-12 h-12 rounded-full bg-white shadow-md border-none cursor-pointer flex items-center justify-center text-xl transition-all hover:shadow-lg hover:scale-110 z-10 max-md:hidden">&#8250;</button>
+
+        <!-- Dots -->
+        <div id="opinie-dots" class="flex justify-center gap-2 mt-8">
+          {[0,1,2,3,4,5].map((i) => (
+            <button type="button" class="opinie-dot w-2.5 h-2.5 rounded-full border-none cursor-pointer transition-all duration-300 bg-gray-lighter" data-dot={i} />
+          ))}
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <button type="button" id="lightbox-close" class="absolute top-6 right-6 text-white text-3xl cursor-pointer bg-transparent border-none z-10 hover:opacity-70 transition-opacity">&#10005;</button>
+    <img id="lightbox-img" src="" alt="" class="max-h-[90vh] max-w-[90vw] object-contain rounded-lg" />
+  </div>
 
   <!-- CTA -->
   <CtaBanner
@@ -95,3 +140,175 @@ const szkolenia = (await getCollection('szkolenia')).sort((a, b) => a.data.order
     buttonLink="/kontakt"
   />
 </BaseLayout>
+
+<script>
+  function initOpinie() {
+    const track = document.getElementById('opinie-track');
+    const dots = document.querySelectorAll('.opinie-dot');
+    const prevBtn = document.getElementById('opinie-prev');
+    const nextBtn = document.getElementById('opinie-next');
+    if (!track) return;
+
+    // Clone slides for infinite loop
+    const origSlides = Array.from(track.querySelectorAll('.opinie-slide'));
+    const total = origSlides.length;
+    const cloneCount = 3;
+
+    // Prepend clones of last 3 slides
+    for (let i = total - 1; i >= total - cloneCount; i--) {
+      track.insertBefore(origSlides[i].cloneNode(true), track.firstChild);
+    }
+    // Append clones of first 3 slides
+    for (let i = 0; i < cloneCount; i++) {
+      track.appendChild(origSlides[i].cloneNode(true));
+    }
+
+    const allSlides = track.querySelectorAll('.opinie-slide');
+    const offset = cloneCount;
+    let current = offset;
+    let isTransitioning = false;
+    let autoplayTimer: ReturnType<typeof setInterval>;
+    const isMobile = () => window.innerWidth < 768;
+
+    function slidePercent() {
+      return isMobile() ? 100 : 100 / 3;
+    }
+
+    function goTo(index: number, animate = true) {
+      current = index;
+      track.style.transition = animate ? 'transform 500ms ease-in-out' : 'none';
+      track.style.transform = `translateX(-${current * slidePercent()}%)`;
+      if (!animate) void track.offsetHeight;
+      isTransitioning = animate;
+      updateStyles();
+    }
+
+    function updateStyles() {
+      const realIndex = ((current - offset) % total + total) % total;
+
+      allSlides.forEach((slide, i) => {
+        const btn = slide.querySelector('button') as HTMLElement;
+        if (!btn) return;
+        if (isMobile()) {
+          btn.style.opacity = i === current ? '1' : '0.5';
+          btn.style.transform = i === current ? 'scale(1)' : 'scale(0.95)';
+          btn.style.boxShadow = '';
+        } else {
+          const center = current + 1;
+          if (i === center) {
+            btn.style.opacity = '1';
+            btn.style.transform = 'scale(1.03)';
+            btn.style.boxShadow = '0 10px 40px rgba(0,0,0,0.12)';
+          } else if (i === current || i === current + 2) {
+            btn.style.opacity = '0.5';
+            btn.style.transform = 'scale(0.95)';
+            btn.style.boxShadow = '';
+          } else {
+            btn.style.opacity = '0';
+            btn.style.transform = 'scale(0.9)';
+            btn.style.boxShadow = '';
+          }
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        const el = dot as HTMLElement;
+        if (i === realIndex) {
+          el.style.backgroundColor = 'var(--color-black, #1a1a1a)';
+          el.style.transform = 'scale(1.3)';
+        } else {
+          el.style.backgroundColor = '';
+          el.style.transform = 'scale(1)';
+        }
+      });
+    }
+
+    // Reset position when reaching clones
+    track.addEventListener('transitionend', () => {
+      isTransitioning = false;
+      if (current >= offset + total) {
+        goTo(offset + (current - offset - total), false);
+      } else if (current < offset) {
+        goTo(offset + total + (current - offset), false);
+      }
+    });
+
+    function next() {
+      if (isTransitioning) return;
+      goTo(current + 1);
+    }
+    function prev() {
+      if (isTransitioning) return;
+      goTo(current - 1);
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      autoplayTimer = setInterval(next, 3000);
+    }
+    function stopAutoplay() {
+      clearInterval(autoplayTimer);
+    }
+
+    prevBtn?.addEventListener('click', () => { prev(); startAutoplay(); });
+    nextBtn?.addEventListener('click', () => { next(); startAutoplay(); });
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => { goTo(offset + i); startAutoplay(); });
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; stopAutoplay(); }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+      startAutoplay();
+    });
+
+    // Pause on hover
+    track.addEventListener('mouseenter', stopAutoplay);
+    track.addEventListener('mouseleave', startAutoplay);
+
+    // Init
+    goTo(offset, false);
+    startAutoplay();
+    window.addEventListener('resize', () => goTo(current, false));
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+    const lightboxClose = document.getElementById('lightbox-close');
+    if (!lightbox || !lightboxImg || !lightboxClose) return;
+
+    track.addEventListener('click', (e) => {
+      const trigger = (e.target as HTMLElement).closest('[data-lightbox-trigger]');
+      if (!trigger) return;
+      const img = trigger.querySelector('img');
+      if (!img) return;
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      stopAutoplay();
+    });
+
+    function closeLightbox() {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      document.body.style.overflow = '';
+      startAutoplay();
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) closeLightbox();
+    });
+  }
+
+  initOpinie();
+  document.addEventListener('astro:after-swap', initOpinie);
+</script>

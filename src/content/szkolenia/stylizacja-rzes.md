@@ -4,6 +4,7 @@ overline: "Szkolenie"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore."
 icon: "✦"
 heroImage: "https://images.unsplash.com/photo-1562322140-8baeececf08b?w=1920&q=80"
+contentImage: "/images/doris/doris-szkolenie-materialy-profesjonalne.jpg"
 order: 1
 program:
   - title: "Teoria i anatomia"

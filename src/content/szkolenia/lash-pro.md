@@ -4,6 +4,7 @@ overline: "Dla profesjonalistek"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Zaawansowane techniki dla doświadczonych stylistek."
 icon: "★"
 heroImage: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&q=80"
+contentImage: "/images/doris/doris-beauty-artystyczna-poza.jpg"
 order: 3
 infoGrid:
   - title: "Wymagane doświadczenie"

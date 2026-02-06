@@ -4,6 +4,7 @@ overline: "Szkolenie"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Buduj swoją markę w branży beauty."
 icon: "▲"
 heroImage: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=1920&q=80"
+contentImage: "/images/doris/doris-profesjonalna-biznes-sesja.jpg"
 order: 5
 cards:
   - icon: "✦"

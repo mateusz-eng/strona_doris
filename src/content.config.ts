@@ -9,7 +9,10 @@ const szkolenia = defineCollection({
     description: z.string(),
     icon: z.string(),
     heroImage: z.string(),
+    contentImage: z.string().optional(),
     order: z.number(),
+    price: z.number().optional(),
+    stripePriceId: z.string().optional(),
     program: z.array(z.object({
       title: z.string(),
       description: z.string(),

@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<BaseLayout title="Dziękujemy - Doris Beauty">
+  <PageHero
+    title="Dziękujemy!"
+    breadcrumb='<a href="/" class="text-white/60 hover:text-white">Strona Główna</a> / Potwierdzenie'
+    backgroundImage="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1920&q=80"
+  />
+
+  <section class="py-28 max-md:py-16">
+    <div class="max-w-[600px] mx-auto px-8 text-center fade-in">
+      <span class="block text-[2.5rem] mb-6">✓</span>
+      <h2 class="mb-6">Płatność zakończona pomyślnie</h2>
+      <div class="w-[60px] h-px bg-black mx-auto my-6"></div>
+      <p class="text-gray mb-4">
+        Dziękujemy za zakup szkolenia! Na podany adres e-mail zostanie wysłane potwierdzenie
+        wraz ze szczegółami dotyczącymi szkolenia.
+      </p>
+      <p class="text-gray mb-10">
+        W razie pytań skontaktuj się z nami telefonicznie lub mailowo.
+      </p>
+      <a
+        href="/"
+        class="inline-block px-10 py-4 bg-black text-white font-body text-[0.85rem] font-medium tracking-[0.15em] uppercase transition-all hover:bg-gray-dark hover:-translate-y-[2px] hover:shadow-md"
+      >
+        Wróć na stronę główną
+      </a>
+    </div>
+  </section>
+</BaseLayout>

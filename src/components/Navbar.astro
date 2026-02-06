@@ -28,15 +28,15 @@ const trainings: NavTraining[] = [
   data-is-home={isHome ? 'true' : undefined}
 >
   <div class="max-w-[1200px] mx-auto px-8 flex items-center justify-between">
-    <a
-      href="/"
-      class:list={[
-        'font-heading text-[1.6rem] font-normal tracking-[0.05em] transition-all',
-        isHome ? 'text-white' : 'text-black',
-      ]}
-      data-logo
-    >
-      Doris Beauty
+    <a href="/" data-logo class="block">
+      {isHome ? (
+        <>
+          <img src="/images/logo/szubinska-logo-white.png" alt="Szubińska Beauty" class="logo-white h-[66px] max-md:h-9 w-auto transition-all" />
+          <img src="/images/logo/szubinska-logo-black.png" alt="Szubińska Beauty" class="logo-black h-[66px] max-md:h-9 w-auto transition-all" />
+        </>
+      ) : (
+        <img src="/images/logo/szubinska-logo-black.png" alt="Szubińska Beauty" class="h-[66px] max-md:h-8 w-auto" />
+      )}
     </a>
 
     <ul class="hidden md:flex items-center gap-10" id="navLinks" data-nav-links>
@@ -122,6 +122,19 @@ const trainings: NavTraining[] = [
     width: 100%;
   }
 
+  /* Logo toggle: home default = white, scrolled = black */
+  .logo-black {
+    display: none;
+  }
+
+  nav.scrolled .logo-white {
+    display: none;
+  }
+
+  nav.scrolled .logo-black {
+    display: block;
+  }
+
   /* Scrolled state */
   nav.scrolled {
     background-color: rgba(255, 255, 255, 0.97);
@@ -129,10 +142,6 @@ const trainings: NavTraining[] = [
     padding-top: 1rem;
     padding-bottom: 1rem;
     box-shadow: var(--shadow-sm);
-  }
-
-  nav.scrolled [data-logo] {
-    color: var(--color-black);
   }
 
   nav.scrolled [data-nav-link] {
